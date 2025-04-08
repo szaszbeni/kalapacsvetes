@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +32,7 @@ namespace kalapacsvetes
         {
             List<Sportolo> lista = new List<Sportolo>();
             StreamReader sr = new StreamReader("kalapacsvetes.txt");
-            string elsosor = Console.ReadLine();
+            string elsosor = sr.ReadLine();
             while (!sr.EndOfStream)
             {
                 Sportolo sor = new Sportolo(sr.ReadLine());
@@ -42,6 +42,53 @@ namespace kalapacsvetes
 
             //4. feladat:
             Console.WriteLine($"!.feladat:{lista.Count()} dobas eredmenye talalhato.");
+
+            //5.feladat
+            double osszeg = 0;
+            int magyaroksz = 0;
+            foreach (var item in lista)
+            {
+                if (item.Orszag == "HUN")
+                {
+                    osszeg = osszeg + item.Eredmeny;
+                    magyaroksz++;
+                }
+            }
+            double atlag = osszeg / magyaroksz;
+            Console.WriteLine($"5. feladat: A magyar  sportolok atlagosan {atlag:.##} metert dobtak.");
+
+            //6.feladat
+            Console.WriteLine("6. feladat: Adjon meg egy evszamot.");
+            string ev = Console.ReadLine();
+            int darab = 0;
+            var sportolok = new List<string>();
+            foreach (var item in lista)
+            {
+                if (item.Datum.Substring(0,4) == ev)
+                {
+                    darab++;
+                    sportolok.Add(item.Neve);
+                }
+            }
+
+            if (darab > 0)
+            {
+                Console.WriteLine($"\t {darab} dobas kerult be ebbez az evben");
+                foreach (var item in sportolok)
+                {
+                    Console.WriteLine($"\t {item} ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Egy darab dobas sem kerult be ebben az evben");
+            }
+
+            //7. feladat
+            Dictionary<string, int> statisztika = new Dictionary<string, int>();
+
+            
+
             Console.Read();
         }
     }
