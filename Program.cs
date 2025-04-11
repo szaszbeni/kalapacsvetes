@@ -111,7 +111,7 @@ namespace kalapacsvetes
             {
                 if (item.Orszag == "HUN")
                 {
-                    sw.WriteLine($"{item.Helyezes};{item.Eredmeny};{ item.Nev};{item.Orszag};{ item.Helyszin};{item.Datum}");
+                    sw.WriteLine($"{item.Helyezes};{item.Eredmeny};{ item.Neve};{item.Orszag};{ item.Helyszin};{item.Datum}");
                 }
             }
             sw.Flush();
